@@ -8,7 +8,7 @@
     Useful for identifying objects that may no longer exist.
 #>
 
-$names = (Get-DnsServerResourceRecord -ComputerName dcname -ZoneName "domain.com" -RRType "A" | Where {($_.Timestamp -le (get-date).adddays(-1095)) -AND ($_.Timestamp -like "*/*")}).HostName
+$names = (Get-DnsServerResourceRecord -ComputerName dnsServer -ZoneName "domain.com" -RRType "A" | Where {($_.Timestamp -le (get-date).adddays(-1095)) -AND ($_.Timestamp -like "*/*")}).HostName
 
 foreach ($name in $names) {
 
